@@ -4,13 +4,60 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 var Post = mongoose.model('Post');
-var users =[{author:"maroof",body:"hellyeah",category:"IT",type:"placement"},{author:"dhruv",body:"mofos",category:"Core",type:"intern"}]
-/* GET users listing. */
-router.route('/')
+
+var isAuthenticated = function (req, res, next) {
+	// if user is authenticated in the session, call the next() to call the next request handler 
+	// Passport adds this method to request object. A middleware is allowed to add properties to
+	// request and response objects
+	if (req.isAuthenticated())
+		return next();
+	// if the user is not authenticated then redirect him to the login page
+	res.redirect('/');
+}
+
+module.exports = function(passport){
+
+router.get('/', function(req, res) {
+	// Display the Login page with any flash message, if any
+	// res.render('index');
+	res.send('index');
+});
+
+router.post('/login', passport.authenticate('login', {
+	successRedirect: '/posts',
+	failureRedirect: '/',
+	failureFlash : true  
+}));
+
+router.get('/signup', function(req, res){
+	// res.render('register',{message: req.flash('message')});
+	res.send("/signup route success");
+});
+
+router.post('/signup', passport.authenticate('signup', {
+	successRedirect: '/posts',
+	failureRedirect: '/signup',
+	failureFlash : true  
+}));
+
+// router.get('/home', isAuthenticated, function(req, res){
+// 	res.render('home', { user: req.user });
+// });
+
+/* Handle Logout */
+router.get('/signout', function(req, res) {
+	req.logout();
+	res.redirect('/');
+});
+
+router.use('/posts',isAuthenticated);
+
+
+router.route('/posts')
 	.get(function(req,res){
 		Post.find(function(err,data){
 			if(err) return res.status(500).send(err);
-			else return res.status(200).json(data);
+			else return res.status(200).send(data);
 
 		});
 	})
@@ -30,7 +77,7 @@ router.route('/')
 
 	})
 
-router.route('/intern')
+router.route('/posts/intern')
 	.get(function(req,res){
 		Post.find({relatedto : "intern"},function(err,data){
 			if(err) return res.status(500).send(err);
@@ -41,7 +88,7 @@ router.route('/intern')
 		return res.send({type: "testing intern post"});
 	});
 
-router.route('/placement')
+router.route('/posts/placement')
 	.get(function(req,res){
 		Post.find({relatedto : "placement"},function(err,data){
 			if(err) return res.status(500).send(err);
@@ -52,7 +99,7 @@ router.route('/placement')
 		return res.send({type: "testing placement post"});
 	});
 
-router.route('/:id')
+router.route('/posts/:id')
 	 .get(function(req,res){
 	 	Post.findById(req.params.id,function(err,data){
 	 		// console.log(err);
@@ -105,6 +152,10 @@ router.route('/:id')
      			})
      		}
      	});
-     })
+     });
 
-module.exports = router;
+
+
+return router;
+
+}

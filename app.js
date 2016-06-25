@@ -8,10 +8,6 @@ var mongoose = require('mongoose');
 
 mongoose.connect("mongodb://127.0.0.1:27017/Post");
 
-require("./models/postmodel");
-var index = require('./routes/index');
-var posts = require('./routes/posts');
-
 var app = express();
 
 // view engine setup
@@ -26,8 +22,29 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/posts', posts)
+var passport = require('passport');
+var expressSession = require('express-session');
+// TODO - Why Do we need this key ?
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+ // Using the flash middleware provided by connect-flash to store messages in session
+ // and displaying in templates
+// var flash = require('connect-flash');
+// app.use(flash());
+
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
+
+
+require("./models/postmodel");
+// var index = require('./routes/index');
+var posts = require('./routes/posts')(passport);
+
+// app.use('/', index);
+app.use('/', posts);
 // app.use('/users', users);
 
 // catch 404 and forward to error handler
