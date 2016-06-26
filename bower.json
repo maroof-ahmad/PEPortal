@@ -1,0 +1,26 @@
+{
+  "name": "PIPortal",
+  "description": "Placement Intern portal",
+  "main": "",
+  "authors": [
+    "Maroof Ahmad"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/maroof-ahmad/PIPortal",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "jquery": "^3.0.0",
+    "bootstrap": "^3.3.6",
+    "angular-route": "^1.5.7"
+  },
+  "resolutions": {
+    "jquery": "1.9.1 - 2"
+  }
+}

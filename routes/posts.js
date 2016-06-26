@@ -17,6 +17,10 @@ var isAuthenticated = function (req, res, next) {
 
 module.exports = function(passport){
 
+router.get('/success', function(req,res){
+	res.send({status : "success", currentUser : req.user ? req.user : null })
+})
+
 router.get('/', function(req, res) {
 	// Display the Login page with any flash message, if any
 	// res.render('index');
@@ -24,20 +28,18 @@ router.get('/', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('login', {
-	successRedirect: '/posts',
-	failureRedirect: '/',
-	failureFlash : true  
+	successRedirect: '/success',
+	failureRedirect: '/'  
 }));
 
-router.get('/signup', function(req, res){
-	// res.render('register',{message: req.flash('message')});
-	res.send("/signup route success");
-});
+// router.get('/signup', function(req, res){
+// 	// res.render('register',{message: req.flash('message')});
+// 	res.send("/signup route success");
+// });
 
 router.post('/signup', passport.authenticate('signup', {
-	successRedirect: '/posts',
-	failureRedirect: '/signup',
-	failureFlash : true  
+	successRedirect: '/success',
+	failureRedirect: '/signup' 
 }));
 
 // router.get('/home', isAuthenticated, function(req, res){
