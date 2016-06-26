@@ -1,11 +1,14 @@
-var app = angular.module('piportal',['ngRoute']).run(function($rootScope){
+var app = angular.module('piportal',['ngRoute']).run(function($http,$rootScope,$location){
 	$rootScope.isAuthenticated = false;
 	$rootScope.currentUser = '';
 
 	$rootScope.signout = function(){
+
 		$http.get('/signout');
 		$rootScope.isAuthenticated = false;
 		$rootScope.currentUser = '';
+		$location.path('/');
+
 	}
 });
 
@@ -91,7 +94,41 @@ app.controller('loginController',['$rootScope','$scope','$http','$location', fun
 	}
 }]);
 
-app.controller('postsController',['$scope','$http','$location',function($scope,$http,$location){
+app.controller('postsController',['$rootScope','$scope','$http','$location',function($rootScope,$scope,$http,$location){
+	if(!$rootScope.isAuthenticated){
+		$location.path('/');
+	}
+	$scope.category = ["core", "software", "consultancy", "others"];
+	$scope.relatedto = ["intern", "placement"];
+	$scope.branch = ["mechanical","computer Science", "electrical","civil","meta","maths","biotech"];
+	$scope.posts =[];
+	$scope.post = {
+		author: '',
+		text: '',
+		category: 'core',
+		branch: 'biotech',
+		company: '',
+		relatedto: 'placement'
+	};
+	$http.get('/posts').success(function(data){
+		$scope.posts = data;
+	});
+	$scope.send = function(){
+		
+		$http.post('/posts',$scope.post)
+		.success(function(data){
+			$scope.posts.push(data);
+			console.log("individual post done");
+			$scope.post = {
+				author: '',
+				text: '',
+				category: 'core',
+				branch: 'biotech',
+				company: '',
+				relatedto: 'placement'
+			};
+		});
+	}
 
 }]);
 
