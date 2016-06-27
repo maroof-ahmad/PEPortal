@@ -1,0 +1,71 @@
+.navbar.navbar-default {
+	background-color: rgba(0, 183, 212, 0.58);
+}
+.navbar-default .navbar-brand{
+	color: white;
+}
+.navbar-default .navbar-text{
+	color: white;
+}
+.form-group{
+	margin-top: 0;
+}
+#navcontainer{
+	margin-top: -1px;
+}
+#userpost{
+	width: 80%;
+}
+#content{
+	margin-left: 10px;
+}
+#username{
+	width: 25%;
+	padding-left: 0px;
+}
+#usercompany{
+	width:25%;
+	padding-left: 0px;
+}
+.category{
+	background-color: rgba(0, 183, 212, 0.58);
+	
+}
+.checkbox{
+	display:inline-block;
+}
+.iop{
+	float:left;
+}
+#userform{
+	padding-bottom: 10px;
+	border-bottom: 2px solid #dddddd;
+}
+.post{
+	border-bottom: 2px solid #dddddd;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+	color:#fff;
+	background-color: rgba(0, 183, 212, 0.58);
+}
+#leftpane{
+	margin-top: 5px;
+}
+.styled-select {
+   padding: 5px;
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 30px;
+   overflow: hidden;
+   width: 180px;
+}
+.semi-square {
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   border:1px solid rgba(0,0,0,0.1);
+}
+.blue{
+ background-color: rgba(0, 183, 212, 0.58);
+ color: #ffffff;
+
+color: #ffffff;

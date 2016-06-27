@@ -1,12 +1,13 @@
-var app = angular.module('piportal',['ngRoute']).run(function($http,$rootScope,$location){
-	$rootScope.isAuthenticated = false;
-	$rootScope.currentUser = '';
-
+var app = angular.module('piportal',['ngRoute']).run(function($rootScope,$http,$window,$location){
+	// $window.sessionStorage.isAuthenticated= false;
+	// $window.sessionStorage.currentUser = '';
+	// console.log($window.sessionStorage.isAuthenticated);
+	// console.log($window.sessionStorage.currentUser);
 	$rootScope.signout = function(){
 
 		$http.get('/signout');
-		$rootScope.isAuthenticated = false;
-		$rootScope.currentUser = '';
+		// $window.sessionStorage.isAuthenticated= false;
+		$window.sessionStorage.currentUser = '';
 		$location.path('/');
 
 	}
@@ -43,7 +44,7 @@ app.config(function($routeProvider){
 
 });
 
-app.controller('signupController',['$rootScope','$scope','$http','$location', function($rootScope,$scope,$http,$location){
+app.controller('signupController',['$window','$scope','$http','$location', function($window,$scope,$http,$location){
 	//console.log("signupController");
 	$scope.user = {
 		username: '',
@@ -54,8 +55,8 @@ app.controller('signupController',['$rootScope','$scope','$http','$location', fu
 		$http.post('/signup',$scope.user)
 		.success(function(data){
 			if(data.status=="success"){
-				$rootScope.isAuthenticated = true;
-				$rootScope.currentUser = data.currentUser.username;
+				// $window.sessionStorage.isAuthenticated= true;
+				$window.sessionStorage.currentUser = data.currentUser.username;
 				$location.path('/posts');
 			} else {
 				console.log("failure");
@@ -69,19 +70,19 @@ app.controller('signupController',['$rootScope','$scope','$http','$location', fu
 
 }]);
 
-app.controller('loginController',['$rootScope','$scope','$http','$location', function($rootScope,$scope,$http,$location){
+app.controller('loginController',['$window','$scope','$http','$location', function($window,$scope,$http,$location){
 
 	$scope.user = {
 	username: '',
 	password : ''
 	}
-	$scope.signup = function(){
-		console.log("login function was called");
+	$scope.login = function(){
+		// console.log("login function was called");
 		$http.post('/login',$scope.user)
 		.success(function(data){
 			if(data.status=="success"){
-				$rootScope.isAuthenticated = true;
-				$rootScope.currentUser = data.currentUser.username;
+				// $window.sessionStorage.isAuthenticated = true;
+				$window.sessionStorage.currentUser = data.currentUser.username;
 				$location.path('/posts');
 			} else {
 				console.log("failure");
@@ -94,9 +95,31 @@ app.controller('loginController',['$rootScope','$scope','$http','$location', fun
 	}
 }]);
 
-app.controller('postsController',['$rootScope','$scope','$http','$location',function($rootScope,$scope,$http,$location){
-	if(!$rootScope.isAuthenticated){
+app.controller('postsController',['$window','$scope','$http','$location',function($window,$scope,$http,$location){
+
+
+	if($window.sessionStorage.currentUser == ''){
+		console.log("isAuthenticated was called");
 		$location.path('/');
+	}
+	$scope.home= true;
+	$scope.class1 = "active";
+	$scope.class2 = "inactive";
+	$scope.changetab = function(data){
+		if(data == $scope.class1){
+			if($scope.class1 == "inactive"){
+				$scope.home = !$scope.home;
+				$scope.class2 = "inactive";
+				$scope.class1 = "active";
+			}
+		}
+		else if(data == $scope.class2){
+			if($scope.class2 == "inactive"){
+				$scope.home = !$scope.home;
+				$scope.class2 = "active";
+				$scope.class1 = "inactive";
+			}
+		}
 	}
 	$scope.category = ["core", "software", "consultancy", "others"];
 	$scope.relatedto = ["intern", "placement"];

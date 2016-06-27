@@ -1,41 +1,165 @@
-<html>
-	<head>
-		<title>PIPortal</title>
-	</head>
-	<body>
-		<div>
-			<h1>
-				PIPortal
-			</h1>
-			<input type="button" ng-click="signout()" value="signout"></input>
-		</div>
-		<div>
-			<div>
-				Filters
-			</div>
-			<div>
-				Write a new post
-				<div>
-					<textarea ng-model = "post.text">
-					</textarea>
-					<select ng-model = "post.relatedto" ng-options="x for x in relatedto">
-					</select>
-					<select ng-model = "post.category" ng-options="x for x in category">
-					</select>
-					<select ng-model = "post.branch" ng-options="x for x in branch">
-					</select>
-					<input type="button" value="Post" ng-click="send()"></input>
-				</div>
-				<div>
-					<p ng-repeat="post in posts track by $index">
-						{{post.text}}
-						{{post.author}}
-						{{post.category}}
-						{{post.branch}}
-						{{post.relatedto}}
-					</p>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+  <link rel="stylesheet" type="text/css" href="./test/bootstrap.min.css">
+  <link href="./dist/bootstrap-material-design/dist/css/bootstrap-material-design.min.css" rel="stylesheet">
+  <link href="./dist/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./stylesheets/home1.css">
+    <div id="navcontainer" class="container panel panel-default">
+
+      <nav class="row navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header navbar-left">
+              <a class="navbar-brand" href="#">PIPortal</a>
+          </div>
+
+          <div class="navbar-right">
+            <a href="#" class="navbar-text">
+              aboutUs
+            </a>
+            <a  class="navbar-text" href="#">
+              <i class="fa fa-sign-out fa-2x" aria-hidden="true" style="margin-top: -4px;"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-2">
+          <div id="leftpane">
+            <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+              <li ng-class="class1" ng-click="changetab(class1)"><a href="#/posts">Home</a></li>
+              <li ng-class="class2" ng-click="changetab(class2)"><a href="#/posts">WritePost</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="col-md-9" id="content">
+
+          <div class="form" id="userform" ng-hide="home">
+
+            <div  id="userpost" class="form-group label-floating is-empty">
+              <label for="comment">Your post:</label>
+              <div class="panel panel-default">
+                <textarea class="form-control" rows="6" id="comment" style="padding : 5px"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row" style="margin-left: 0px; margin-bottom: 5px;">
+
+              <div class="form-group col-md-3 label-floating is-empty" id="username">
+                <label class="control-label" for="username1">Your Name</label>
+                <input  type="text" class="form-control" id="username1">
+              </div>
+              <div class="form-group col-md-3 label-floating is-empty" id="usercompany">
+                <label class="control-label" for="usercompany1">Company</label>
+                <input  type="text" class="form-control" id="usercompany1">
+              </div>
+            </div>
+
+            <div class="form-group">
+
+
+                <div style="margin-bottom : 20px">
+                  <select class="styled-select blue semi-square">
+                    <option>Here is the first option</option>
+                    <option>The second option</option>
+                    <option>The third option</option>
+                  </select>
+
+                  <select class="styled-select blue semi-square" style="margin-left: 20px">
+                    <option>Here is the first option</option>
+                    <option>The second option</option>
+                    <option>The third option</option>
+                  </select> 
+                </div>
+
+              <span >
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="placement"> Placement
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="intern"> Internship
+                </label>
+              </span> 
+
+
+            </div>
+
+            <button type="submit" class="btn btn-raised category">Submit</button>
+
+            
+
+          </div>
+
+
+          <div id="posts" ng-show="home">
+            <div class="post">
+              <h1>
+                FuzzyLogix
+              </h1>
+              <p>
+                Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+
+                Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+              </p>
+              <a href="#">readmore</a>
+            </div>
+
+            <div class="post">
+              <h1>
+                FuzzyLogix
+              </h1>
+              <p>
+                Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+
+                Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+              </p>
+            </div>
+
+            <div class="post">
+              <h1>
+                FuzzyLogix
+              </h1>
+              <p>
+                Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+
+                Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+              </p>
+            </div>
+
+            <div class="post">
+              <h1>
+                FuzzyLogix
+              </h1>
+              <p>
+                Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+
+                Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+              </p>
+            </div>
+    
+          </div>
+
+
+
+        </div>
+
+
+     </div>
+    </div>
+    <script>
+      $( document ).ready(function() 
+      {
+          $(function() 
+          {
+              $.material.init();
+          });
+      });    
+    </script>
