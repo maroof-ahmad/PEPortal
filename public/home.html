@@ -1,6 +1,6 @@
-  <link rel="stylesheet" type="text/css" href="./test/bootstrap.min.css">
+<!--   <link rel="stylesheet" type="text/css" href="./test/bootstrap.min.css">
   <link href="./dist/bootstrap-material-design/dist/css/bootstrap-material-design.min.css" rel="stylesheet">
-  <link href="./dist/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+  <link href="./dist/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" type="text/css" href="./stylesheets/home1.css">
     <div id="navcontainer" class="container panel panel-default">
 
@@ -14,9 +14,9 @@
             <a href="#" class="navbar-text">
               aboutUs
             </a>
-            <a  class="navbar-text" href="#">
+            <span  id="signout" class="navbar-text" ng-click="signout()" >
               <i class="fa fa-sign-out fa-2x" aria-hidden="true" style="margin-top: -4px;"></i>
-            </a>
+            </span>
           </div>
         </div>
       </nav>
@@ -39,7 +39,7 @@
             <div  id="userpost" class="form-group label-floating is-empty">
               <label for="comment">Your post:</label>
               <div class="panel panel-default">
-                <textarea class="form-control" rows="6" id="comment" style="padding : 5px"></textarea>
+                <textarea class="form-control" rows="6" id="comment" style="padding : 5px" ng-model="post.text"></textarea>
               </div>
             </div>
 
@@ -47,11 +47,11 @@
 
               <div class="form-group col-md-3 label-floating is-empty" id="username">
                 <label class="control-label" for="username1">Your Name</label>
-                <input  type="text" class="form-control" id="username1">
+                <input  type="text" class="form-control" id="username1" ng-model="post.author">
               </div>
               <div class="form-group col-md-3 label-floating is-empty" id="usercompany">
                 <label class="control-label" for="usercompany1">Company</label>
-                <input  type="text" class="form-control" id="usercompany1">
+                <input  type="text" class="form-control" id="usercompany1" ng-model="post.company">
               </div>
             </div>
 
@@ -59,32 +59,33 @@
 
 
                 <div style="margin-bottom : 20px">
-                  <select class="styled-select blue semi-square">
-                    <option>Here is the first option</option>
-                    <option>The second option</option>
-                    <option>The third option</option>
-                  </select>
-
-                  <select class="styled-select blue semi-square" style="margin-left: 20px">
-                    <option>Here is the first option</option>
-                    <option>The second option</option>
-                    <option>The third option</option>
-                  </select> 
+                  <div class="select_style" >
+                    <select ng-model="post.category" ng-options="cat for cat in category"></select><span></span>  </div>
+                  <div class="select_style" style="margin-left: 20px" >
+                    <select  ng-model="post.branch" ng-options="br for br in branch"></select>
+                    <span></span>
+                  </div>
                 </div>
 
-              <span >
+<!--  for material design             <span >
                 <label class="radio-inline">
-                  <input type="radio" name="inlineRadioOptions" value="placement"> Placement
+                  <input type="radio" ng-model="post.relatedto" value="placement"> Placement
                 </label>
                 <label class="radio-inline">
-                  <input type="radio" name="inlineRadioOptions" value="intern"> Internship
+                  <input type="radio" ng-model="post.relatedto" value="intern"> Internship
+                </label>
+              </span>  -->
+              <span >
+                <label class="radio-inline">
+                  <input type="radio" ng-model="post.relatedto" value="placement"> Placement
+                  <input type="radio" ng-model="post.relatedto" value="intern"> Internship
                 </label>
               </span> 
 
 
             </div>
 
-            <button type="submit" class="btn btn-raised category">Submit</button>
+            <button id="submitbtn" class="btn btn-raised" ng-click="send()">Submit</button>
 
             
 
@@ -92,57 +93,25 @@
 
 
           <div id="posts" ng-show="home">
-            <div class="post">
-              <h1>
-                FuzzyLogix
-              </h1>
-              <p>
-                Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-
-                Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-              </p>
-              <a href="#">readmore</a>
-            </div>
-
-            <div class="post">
-              <h1>
-                FuzzyLogix
-              </h1>
-              <p>
-                Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-
-                Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-              </p>
-            </div>
-
-            <div class="post">
-              <h1>
-                FuzzyLogix
-              </h1>
-              <p>
-                Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-
-                Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-              </p>
-            </div>
-
-            <div class="post">
-              <h1>
-                FuzzyLogix
-              </h1>
-              <p>
-                Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-
-                Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-              </p>
+            <div >
+              <div class="post panel panel-default" ng-repeat="post in posts track by $index">
+                <div class="panel-heading">
+                  <h4 class=" pull-left lead">{{post.company}}</h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <div style="display:inline-block; margin-top : 7px ">
+                    <p><i class="fa fa-user"></i> by {{post.author}}
+                  </div>
+                  <div  class="pull-right" style= "margin-top : 5px;">
+                    <span><p><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{post.timestamp | date : "MMM d, y h:mm a"}} </p></span>
+                  </div>
+                  <div style="display : inline-block; margin-top : 5px; margin-left : 10px">
+                  <p><i class="fa fa-tags"></i> Tags: <a href=""><span class="badge badge-info">{{post.branch}}</span></a> <a href=""><span class="badge badge-info">{{post.category}}</span></a> <a href=""><span class="badge badge-info">{{post.relatedto}}</span></a>
+                  </div>
+                </div>
+                
+                <div class="panel-body">
+                  <p>{{post.text}}</p>
+                </div>
+              </div>
             </div>
     
           </div>

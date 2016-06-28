@@ -137,7 +137,7 @@ app.controller('postsController',['$window','$scope','$http','$location',functio
 		$scope.posts = data;
 	});
 	$scope.send = function(){
-		
+		console.log($scope.post);
 		$http.post('/posts',$scope.post)
 		.success(function(data){
 			$scope.posts.push(data);

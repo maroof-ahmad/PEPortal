@@ -1,14 +1,30 @@
+<link href="./stylesheets/home1.css" rel="stylesheet">
 <link href="./stylesheets/auth.css" rel="stylesheet">
 <div class="container">
 
+	<nav class="row navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header navbar-left">
+              <a class="navbar-brand" href="#">PIPortal</a>
+          </div>
+
+          <div class="navbar-right">
+            <a href="#" class="navbar-text">
+              aboutUs
+            </a>
+          </div>
+        </div>
+      </nav>
+     <div id="con">
       <form class="form-signin">
         <h2 class="form-signin-heading">Sign Up !</h2>
         <label for="inputEmail" class="sr-only">Enrollment no</label>
         <input type="text"  class="form-control" placeholder="Enrollement No" required autofocus ng-model="user.username">
         <label class="sr-only">Password</label>
         <input type="password" class="form-control" placeholder="Password" required ng-model="user.password">
-        <input type="button" class="btn btn-lg btn-success btn-block" value="Sign up" ng-click="signup()"></input>
+        <input type="button" class="btn" value="Sign up" ng-click="signup()"></input>
         <p>Already a member?<a href="#/login"> Login</a></p>
       </form>
+     </div>
 
 </div>

@@ -1,5 +1,8 @@
+a, a:hover {
+	color: rgba(244, 54, 54, 0.85);
+}
 .navbar.navbar-default {
-	background-color: rgba(0, 183, 212, 0.58);
+	background-color: rgba(244, 54, 54, 0.85);
 }
 .navbar-default .navbar-brand{
 	color: white;
@@ -28,7 +31,7 @@
 	padding-left: 0px;
 }
 .category{
-	background-color: rgba(0, 183, 212, 0.58);
+	background-color: rgba(244, 54, 54, 0.85);
 	
 }
 .checkbox{
@@ -38,6 +41,7 @@
 	float:left;
 }
 #userform{
+	color:#000 !important;
 	padding-bottom: 10px;
 	border-bottom: 2px solid #dddddd;
 }
@@ -46,12 +50,12 @@
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
 	color:#fff;
-	background-color: rgba(0, 183, 212, 0.58);
+	background-color: rgba(244, 54, 54, 0.85);
 }
 #leftpane{
 	margin-top: 5px;
 }
-.styled-select {
+/*.styled-select {
    padding: 5px;
    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
    height: 30px;
@@ -63,9 +67,72 @@
    -moz-border-radius: 3px;
    border-radius: 3px;
    border:1px solid rgba(0,0,0,0.1);
-}
-.blue{
- background-color: rgba(0, 183, 212, 0.58);
- color: #ffffff;
+}*/
+/*.blue{
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}*/
+.select_style 
+{
+	background: #FFF;
+	overflow: hidden;
+	display: inline-block;
+	color: #525252;
+	font-weight: 300;
+	-webkit-border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
+	-moz-border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
+	border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
+	-webkit-box-shadow: 0 0 5px rgba(123, 123, 123, 0.2);
+	-moz-box-shadow: 0 0 5px rgba(123,123,123,.2);
+	box-shadow: 0 0 5px rgba(123, 123, 123, 0.2);
+	border: solid 1px #DADADA;
+	font-family: "helvetica neue",arial;
+	position: relative;
+	cursor: pointer;
+	padding-right:20px;
 
-color: #ffffff;
+}
+.select_style span
+{
+	position: absolute;
+	right: 10px;
+	width: 8px;
+	height: 8px;
+	background: url(http://projects.authenticstyle.co.uk/niceselect/arrow.png) no-repeat;
+	top: 50%;
+	margin-top: -4px;
+}
+.select_style select
+{
+	-webkit-appearance: none;
+	appearance:none;
+	width:120%;
+	background:none;
+	background:transparent;
+	border:none;
+	outline:none;
+	cursor:pointer;
+	padding:7px 10px;
+}
+#submitbtn{
+	background-color: rgba(244, 54, 54, 0.85);
+	color : #fff;
+}
+.pull-left {
+  float: left !important;
+  margin-top : 0px;
+}
+#signout:hover{
+	color: #eee;
+}
